@@ -1,0 +1,36 @@
+body{
+	background-color: #ebd78d;
+}
+.panel{
+	border-style: solid;
+	border-color: black;
+}
+
+.panel-body{
+	background-color: #ebd78d;
+}
+
+.panel > .panel-heading{
+	background-image: none;
+	background-color: #dcba3d;
+}
+
+.panel > .panel-footer{
+	background-image: none;
+	background-color: #dcba3d;
+}
+
+.navbar-custom{
+	border-style: solid;
+	border-color: black;
+	background-color: #dcba3d;
+}
+
+.navbar .navbar-nav > li > a {
+    color: black;
+}
+
+.active{
+	background-color: #b29320;
+}
+
