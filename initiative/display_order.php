@@ -8,29 +8,27 @@
 					<th>Creature Name</th>
 					<th>Initiative Value</th>
 					<th>Move Up/Down?</th>
-					<th>Health</th>
 					<th>Remove?</th>
 				</tr>
 				<?php
 					if(isset($_SESSION["order"])){
-						foreach($_SESSION["order"] as $creatureName => $creatureStats){
+						foreach($_SESSION["order"] as $currCreature){
+							$name = $currCreature->name;
+							$iv = $currCreature->iv;
+							$hp = $currCreature->hp;
+							$id = $currCreature->id;
 							echo "<tr>";
-								echo "<td>$creatureName</td>";
+								echo "<td>$name</td>";
 								echo "<td>";
-								echo $creatureStats['iv'];
+								echo $iv;
 								echo "</td>";
 								echo "<td>";
-								echo "<a href='initiative/order_process.php?m=u&c=$creatureName'><span class='glyphicon glyphicon-arrow-up'></span></a>";
-								echo "<a href='initiative/order_process.php?m=d&c=$creatureName'><span class='glyphicon glyphicon-arrow-down'></span></a>";
-								echo "</td>";
-								echo "<td>";
-								echo $creatureStats['hp'];
-								echo "<button type='button' class='btn btn-primary btn-sm' data-toggle='modal' data-target='#changeHealth'>Change Health</button>";
-								include("health_modal.php");
+								echo "<a href='initiative/order_process.php?m=u&c=$id'><span class='glyphicon glyphicon-arrow-up'></span></a>";
+								echo "<a href='initiative/order_process.php?m=d&c=$id'><span class='glyphicon glyphicon-arrow-down'></span></a>";
 								echo "</td>";
 								echo "<td>
 										<form action='initiative/order_process.php' method='post'>
-											<button type='submit' class='btn btn-danger btn-sm' name='remove' value='$creatureName'>
+											<button type='submit' class='btn btn-danger btn-sm' name='remove' value='$id'>
 												Remove from Order
 											</button>
 										</form>

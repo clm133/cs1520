@@ -1,11 +1,13 @@
 <?php
+	include("creature.php");
 	session_start();
 	
-	function sortByIV($a, $b) { //a sorting function for uasort() to sort our $_SESSION["order"] array by a character's initiative value("iv") largest to smallest
-		if($a['iv'] < $b['iv']){
+	/* a sorting function for uasort() to sort our $_SESSION["order"] array by a character's initiative value("iv") largest to smallest*/
+	function sortByIV($a, $b) {
+		if($a->iv < $b->iv){
 			return 1;
 		}
-		else if($a['iv'] == $b['iv']){
+		else if($a->iv == $b->iv){
 			return 0;
 		}
 		else{
@@ -13,11 +15,12 @@
 		}
 	}
 	
-	function sortByIVReverse($a, $b) { //a sorting function for uasort() to sort our $_SESSION["order"] array by a character's initiative value("iv") smallest to largest
-		if($a['iv'] < $b['iv']){
+	/* a sorting function for uasort() to sort our $_SESSION["order"] array by a character's initiative value("iv") smallest to largest*/
+	function sortByIVReverse($a, $b) { 
+		if($a->iv < $b->iv){
 			return -1;
 		}
-		else if($a['iv'] == $b['iv']){
+		else if($a->iv == $b->iv){
 			return 0;
 		}
 		else{
@@ -26,12 +29,12 @@
 	}
 	
 	function upOrder($a, $b){  //a function that augments the initiative value of $a to be that of the initiative value of $b + 1 (effectively moving a character up in initiative)
-		$_SESSION["order"][$a]["iv"] = $_SESSION["order"][$b]["iv"]+1;
+		$a->set_iv(($b->iv) + 1);
 		uasort($_SESSION["order"], 'sortByIV');
 	}
 	
 	function downOrder($a, $b){ //a function that augments the initiative value of $a to be that of the initiative value of $b - 1 (effectively moving a character down in initiative)
-		$_SESSION["order"][$a]["iv"] = $_SESSION["order"][$b]["iv"]-1;
+		$a->set_iv(($b->iv) - 1);
 		uasort($_SESSION["order"], 'sortByIV');
 	}
 	
@@ -39,55 +42,58 @@
 		$_SESSION["active"] = 1;
 	}
 	
-	if($_POST["newhp"] != null){
+	if(isset($_POST["newhp"])){
 		$_SESSION["order"][$_POST["creatureName"]]["hp"] = $_POST["newhp"];
 	}
 	
-	if($_POST["cName"] != null){ //adds new creatures to the order
-			if($_SESSION["order"] == null){
-				$_SESSION["order"] = array($_POST["cName"] => array("iv" => $_POST["iv"], "hp" => $_POST["hp"]));
+	/* Adds a new creautre to the order */
+	if(isset($_POST["creatureName"])){ 
+			if(!isset($_SESSION["order"])){
+				$_SESSION["id_assignment"] = 0;
+				$ctr = new Creature($_POST["creatureName"], $_POST["iv"], $_POST["hp"], $_SESSION["id_assignment"]);
+				$_SESSION["order"] = array();
+				$_SESSION["order"][$ctr->id] = $ctr;
 			}
 			else{
-				$arr = $_SESSION["order"];
-				$arr[$_POST["cName"]]["iv"] = $_POST["iv"];
-				$arr[$_POST["cName"]]["hp"] = $_POST["hp"];
-				uasort($arr, 'sortByIV');
-				$_SESSION["order"] = $arr;
+				$_SESSION["id_assignment"]++;
+				$ctr = new Creature($_POST["creatureName"], $_POST["iv"], $_POST["hp"], $_SESSION["id_assignment"]);
+				$_SESSION["order"][$ctr->id] = $ctr;
+				uasort($_SESSION["order"], 'sortByIV');
 			}
 	}
 	
-	if($_POST["remove"] != null){ //removes creatures from the order
+	/* removes creatures from the order */
+	if(isset($_POST["remove"])){ 
 		unset($_SESSION["order"][$_POST["remove"]]);
 	}
 	
-	if($_GET["m"] == "u"){ //moves creature up in the order
-		$cur;
-		$prev;
+	/* Moves creature Up in the order */
+	if($_GET["m"] == "u"){ 
 		foreach($_SESSION["order"] as $key => $value){
-			if($cur != null){
+			if(isset($cur)){
 				$prev = $cur;
 			}
 			$cur = $key;
 			if($cur == $_GET["c"]){
-				if($prev != null){
-					upOrder($cur, $prev);
+				if(isset($prev)){
+					upOrder($_SESSION["order"][$cur], $_SESSION["order"][$prev]);
 				}
 				break;
 			}
 		}
 	}
-	else if($_GET["m"] == "d"){ //moves creature down in the order
+	
+	/* Moves Creature Down in the Order*/
+	else if($_GET["m"] == "d"){ 
 		uasort($_SESSION["order"], 'sortByIVReverse');
-		$cur;
-		$prev;
 		foreach($_SESSION["order"] as $key => $value){
-			if($cur != null){
+			if(isset($cur)){
 				$prev = $cur;
 			}
 			$cur = $key;
 			if($cur == $_GET["c"]){
-				if($prev != null){
-					downOrder($cur, $prev);
+				if(isset($prev)){
+					downOrder($_SESSION["order"][$cur], $_SESSION["order"][$prev]);
 				}
 				break;
 			}
