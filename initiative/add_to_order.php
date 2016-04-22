@@ -15,7 +15,7 @@
 					<label for="hp">HP</label>
 					<input type="text" name="hp" class="form-control" id="hp" placeholder="10">
 				</div>
-				<button type="submit" class="btn btn-primary">Add</button>
+				<button type="submit" class="btn btn-success">Add  <span class="glyphicon glyphicon-plus" aria-hidden="true"></span></button>
 			</form>
 		</div>
 	</div>

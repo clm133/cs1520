@@ -2,6 +2,18 @@
 	include("creature.php");
 	session_start();
 	
+	/* a function to find the next item in our order array */
+	function getNextOrder($id){
+		$keyList = array_keys($_SESSION["order"]); //array_keys() returns a list of all the keys in their current order in the $_SESSION["order"] array
+		$cur = array_search($id, $keyList); //we can then find the index of the provided ID
+		if($cur == (count($keyList) - 1)){ //if the current index is at the bottom of the order, we return the first id in the list of keys (AKA the top of the order).
+			return $keyList[0];
+		}
+		else{ 
+			return $keyList[$cur+1];
+		}
+	}
+	
 	/* a sorting function for uasort() to sort our $_SESSION["order"] array by a character's initiative value("iv") largest to smallest*/
 	function sortByIV($a, $b) {
 		if($a->iv < $b->iv){
@@ -50,6 +62,7 @@
 	if(isset($_POST["creatureName"])){ 
 			if(!isset($_SESSION["order"])){
 				$_SESSION["id_assignment"] = 0;
+				$_SESSION["currentTurn"] = $_SESSION["id_assignment"];
 				$ctr = new Creature($_POST["creatureName"], $_POST["iv"], $_POST["hp"], $_SESSION["id_assignment"]);
 				$_SESSION["order"] = array();
 				$_SESSION["order"][$ctr->id] = $ctr;
@@ -63,8 +76,16 @@
 	}
 	
 	/* removes creatures from the order */
-	if(isset($_POST["remove"])){ 
+	if(isset($_POST["remove"])){
+		if($_POST["remove"] == $_SESSION["currentTurn"]){ //if the current turn is set to the creature to be removed
+			$_SESSION["currentTurn"] = getNextOrder($_POST["remove"]);
+		}
 		unset($_SESSION["order"][$_POST["remove"]]);
+	}
+	
+	/* Advances the current turn*/
+	if($_POST["proceed"] == "1"){
+		$_SESSION["currentTurn"] = getNextOrder($_SESSION["currentTurn"]);
 	}
 	
 	/* Moves creature Up in the order */
