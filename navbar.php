@@ -1,5 +1,5 @@
 <?php
-	function active_page($s){ //this function will help us highlight the current page in navbar
+	function active_page($s){ //this function will help us highlight the current page in navbar, neat!
 		$self = basename($_SERVER["PHP_SELF"]);
 		if($s == $self){
 			echo "class='active'";
@@ -9,7 +9,7 @@
 
 <div class="container">
 	<!-- We are using bootstrap's awesome navbar template here-->
-	<nav class="navbar navbar-custom">
+	<nav class="navbar navbar-default">
 	  <div class="container-fluid">
 		<!-- Collect the nav links, forms, and other content for toggling -->
 		<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">

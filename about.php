@@ -3,7 +3,8 @@
 	<head>
 		<title>Taking Initiative</title>
 		<link rel="stylesheet" type="text/css" href="css/bootstrap.min.css">
-		<<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+		<link rel="stylesheet" type="text/css" href="css/main.css">
+		<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 		<meta http-equiv="x-ua-compatible" content="ie=edge">
 	</head>
 	<body>

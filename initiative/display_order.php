@@ -1,8 +1,12 @@
-
+<?php
+	function creatureOptionsId($p1){
+		echo "id='creatureOptions_".$p1."'";
+	}
+?>
 <div class="container col-sm-8">
 	<div class="panel panel-default">
 		<div class="panel-heading"><h4>Current Order</h4></div>
-		<div class="panel-body">
+		<div class="table_panel panel-body">
 			<table class="table table-bordered">
 				<tr>
 					<th>Creature Name</th>
@@ -18,11 +22,11 @@
 							$iv = $currCreature->iv;
 							$currHp = $currCreature->currHp;
 							$id = $currCreature->id;
-							if($id == $_SESSION["currentTurn"]){
-								echo "<tr class='success'>";
+							if(isset($_SESSION["currentTurn"]) && $id == $_SESSION["currentTurn"]){
+								echo "<tr class='success accordian-toggle' data-toggle='collapse' data-target='#creatureOptions_$id'>";
 							}
 							else{
-								echo "<tr>";
+								echo "<tr class='accordian-toggle' data-toggle='collapse' data-target='#creatureOptions_$id'>";
 							}
 								echo "<td>$name</td>";
 								echo "<td>$currHp</td>";
@@ -46,7 +50,10 @@
 		</div>
 		<div class="panel-footer">
 			<form action="initiative/order_process.php" method="POST">
-				<button type="submit" class="btn btn-primary" name="proceed" value="1">
+				<button type="submit" class="btn btn-primary" name="advanceOrder" value="1">
+					Start Order <span class="glyphicon glyphicon-repeat" aria-hidden="true"></span>
+				</button>
+				<button type="submit" class="btn btn-primary" name="advanceOrder" value="2">
 					Next Turn <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
 				</button>
 			</form>

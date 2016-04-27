@@ -1,4 +1,4 @@
-<div class="container col-sm-6" id="start_new_order">
+<div class="container col-sm-4" id="start_new_order">
 	<div class="panel panel-default">
 		<div class="panel-heading"><h4>Start a New Tracker?</h4></div>
 		<div class="panel-body">
