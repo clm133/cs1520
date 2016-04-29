@@ -1,0 +1,69 @@
+Charles Mietzner
+CS1520 - Monday/Wednesday 4:30 Section
+Project Part II Write-Up
+
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+Section I. What did you change from part 1?
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+	The changes to part 1 of this project were largely behind the scenes, as the functionality since part 1
+remains primarily the same. Off the bat, I think you will notice the general look of the site improved. As I 
+became more comfortable with CSS and Bootstrap, I worked to make the main functionality of the site, the initiative
+tracker, look more cohesive and cleaner. 
+	Behind-the-scenes, as mentioned earlier, a lot changed. I switched to using php objects to store creature/character
+specific information rather than a $_SESSION array used previously. A $_SESSION array still holds the entire initiative
+order as before, but the deatils of each creature in that order are now organized with a php object.
+	I also replaced the <table> element structure presenting the intiative order with a <div> element structure. Which
+made it much easier to introduce some fun javascript functionality. Including rows with collapsable options menu, buttons 
+which summoned modals and an AJAX-utilizing health calculator! 
+
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+Section 2. Did you fufill the terms of your project proposal?
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+	Unfortunately, not all of them. In my proposal I intended to add more detailed character tracking options to the 
+site's functionality, but the process of updating my site's innerworkings (as detailed above) to accomodate such a feature 
+proved to take a lot longer than I expected. That being said, I still feel the changes that were made to the site for project
+part II were quite substantial, the most fun, and I learned a whole lot from them! 
+
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+Section 3. If there was a Project Part 3, what would you implement?
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+	As mentioned above, Project Part II's original plan was to have more detailed character tracking options, such as keeping 
+track of a creature's ability scores, their skills, their attacks, etc. So certainly, given more time, this feature would finally
+get implemented.
+	Other ideas for expanded functionality would include adding the abilty for a user to create a profile with the site to save their
+creature's statistics for future use. The idea here would be that a Game Master (GM) might prepare for a D&D session by creating some monsters
+before hand and saving those creatures to their profile. Then, when it comes time to generate initiative order, the GM could simply select
+their saved creatures and add them to the order without having to fill any information in for them. Neat, right? 
+
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+Section 4. What did you learn from this project between part 1 and part 2?
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+	Quite a bit. For one, the project sort of forced me to get a better handle on CSS, as my project from part 1 was a MAJOR eyesore.
+The background changes to how creatures were stored also prompted me to delve a bit deeper into PHP objects, a topic I sort of ignored 
+after studying it for the test. Also, I'm full on converted to using <div> elements to build tables rather than fiddling with <table>,
+<tr>, <td> nonsense! There is just so much more control over a table when it is organized in <div> elements! So great!
+
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+Section 5. What did you like about the project? What would you change about it?
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+	Well I liked the free-form, choose-your-own-adventure approach to choosing the functionality of my site. However, I can see how sometimes, 
+ with open-ended assignments like these, it can be hard for a student to simply generate an idea with enough substance to be considered 
+ a project without biting off more than they can chew. So perhaps next time give the student the option between creating their own project or a 
+ prompt assignment which demonstrates application of different aspects of the course. This prompt assignment would have the added benefit of 
+ demonstrating the scale of what your expectations for the project are.
+ 
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+Section 6. Final Thoughts and Some Fun Facts about Transformers!
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+	Thanks for the class. As someone who didn't really touch web development stuff since HTML, it was great! 
+	
+	Also, I'm glad someone else thinks the Transformers: The Movie (1986) is fantastic! I was 5 or 6 when I watched it on VHS and Optimus Prime's death 
+was my first brush with the concept of mortality. Also, did you know it was Orson Welles' last movie? On his deathbed, in an interview 
+with a biographer, Welles described his latest project as a movie where "toys who do horrible things to each other". Which I think is
+the funniest description of basically any movie ever. Anywho, just wanted to share that tidbit with a fellow TF enthusiast. Have a good summer!
