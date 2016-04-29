@@ -1,8 +1,11 @@
 #start_new_order {
-	margin: auto;
 	float: right;
 }
 
-.table_panel{
-	padding: 0;
+#collapseExplaination {
+	font-weight: thin;
+	font-size: smaller;
+	color: grey;
+	margin-top: 20px;
+	margin-bottom: 0px;
 }

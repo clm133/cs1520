@@ -1,0 +1,12 @@
+.modalForm {
+	margin: 10px 10px 10px 10px;
+}
+
+.relaventStat{
+	margin-left: 10px;
+	font-weight: bold;
+}
+
+.modalForm > button {
+	width: 125px;
+}

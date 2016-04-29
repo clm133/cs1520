@@ -1,0 +1,18 @@
+div.row {
+	margin-bottom: 5px;
+	border-bottom-style: solid;
+	border-bottom-width: thin;
+	border-bottom-color: black;
+}
+
+div.row {
+	cursor: pointer;
+}
+
+div.row > .header {
+	font-weight: bold;
+}
+
+.currentTurn {
+	background-color: #B0C4DE;
+}

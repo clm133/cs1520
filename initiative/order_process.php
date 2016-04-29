@@ -1,60 +1,7 @@
 <?php
 	include("creature.php");
 	session_start();
-	
-	/* a function to find the next item in our order array */
-	function getNextOrder($id){
-		$keyList = array_keys($_SESSION["order"]); //array_keys() returns a list of all the keys in their current order in the $_SESSION["order"] array
-		$cur = array_search($id, $keyList); //we can then find the index of the provided ID
-		if($cur == (count($keyList) - 1)){ //if the current index is at the bottom of the order, we return the first id in the list of keys (AKA the top of the order).
-			return $keyList[0];
-		}
-		else{ 
-			return $keyList[$cur+1];
-		}
-	}
-	
-	/* a function that returns the first creature in order */
-	function getTopOrder(){
-		$keyList = array_keys($_SESSION["order"]); //array_keys() returns a list of all the keys in their current order in the $_SESSION["order"] array
-		return $keyList[0];
-	}
-	
-	/* a sorting function for uasort() to sort our $_SESSION["order"] array by a character's initiative value("iv") largest to smallest*/
-	function sortByIV($a, $b) {
-		if($a->iv < $b->iv){
-			return 1;
-		}
-		else if($a->iv == $b->iv){
-			return 0;
-		}
-		else{
-			return -1;
-		}
-	}
-	
-	/* a sorting function for uasort() to sort our $_SESSION["order"] array by a character's initiative value("iv") smallest to largest*/
-	function sortByIVReverse($a, $b) { 
-		if($a->iv < $b->iv){
-			return -1;
-		}
-		else if($a->iv == $b->iv){
-			return 0;
-		}
-		else{
-			return 1;
-		}
-	}
-	
-	function upOrder($a, $b){  //a function that augments the initiative value of $a to be that of the initiative value of $b + 1 (effectively moving a character up in initiative)
-		$a->set_iv(($b->iv) + 1);
-		uasort($_SESSION["order"], 'sortByIV');
-	}
-	
-	function downOrder($a, $b){ //a function that augments the initiative value of $a to be that of the initiative value of $b - 1 (effectively moving a character down in initiative)
-		$a->set_iv(($b->iv) - 1);
-		uasort($_SESSION["order"], 'sortByIV');
-	}
+	include("order_functions.php");
 	
 	if($_SESSION["active"] != 1){ //makes sure session is marked as active
 		$_SESSION["active"] = 1;
@@ -78,6 +25,18 @@
 				$_SESSION["order"][$ctr->id] = $ctr;
 				uasort($_SESSION["order"], 'sortByIV');
 			}
+	}
+	
+	/* damages current health of creature */
+	if(isset($_POST["dmgHealthValue"])){
+		$newHp = $_SESSION["order"][$_POST["hiddenId"]]->currHp - $_POST["dmgHealthValue"];
+		$_SESSION["order"][$_POST["hiddenId"]]->set_curr_hp($newHp);
+	}
+	
+	/* damages current health of creature */
+	if(isset($_POST["healHealthValue"])){
+		$newHp = $_SESSION["order"][$_POST["hiddenId"]]->currHp + $_POST["healHealthValue"];
+		$_SESSION["order"][$_POST["hiddenId"]]->set_curr_hp($newHp);
 	}
 	
 	/* removes creatures from the order */
@@ -104,13 +63,13 @@
 	}
 	
 	/* Moves creature Up in the order */
-	if($_GET["m"] == "u"){ 
+	if(isset($_POST["moveUp"])){ 
 		foreach($_SESSION["order"] as $key => $value){
 			if(isset($cur)){
 				$prev = $cur;
 			}
 			$cur = $key;
-			if($cur == $_GET["c"]){
+			if($cur == $_POST["moveUp"]){
 				if(isset($prev)){
 					upOrder($_SESSION["order"][$cur], $_SESSION["order"][$prev]);
 				}
@@ -120,14 +79,14 @@
 	}
 	
 	/* Moves Creature Down in the Order*/
-	else if($_GET["m"] == "d"){ 
+	else if(isset($_POST["moveDown"])){ 
 		uasort($_SESSION["order"], 'sortByIVReverse');
 		foreach($_SESSION["order"] as $key => $value){
 			if(isset($cur)){
 				$prev = $cur;
 			}
 			$cur = $key;
-			if($cur == $_GET["c"]){
+			if($cur == $_POST["down"]){
 				if(isset($prev)){
 					downOrder($_SESSION["order"][$cur], $_SESSION["order"][$prev]);
 				}

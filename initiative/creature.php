@@ -33,5 +33,10 @@
 		function set_iv($newIV){
 			$this->iv = $newIV;
 		}
+		
+		/* Set_Curr_HP - sets new HP for creature */
+		function set_curr_hp($newHP){
+			$this->currHp = $newHP;
+		}
 	}
 ?>
