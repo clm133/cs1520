@@ -48,12 +48,12 @@
 	}
 	
 	/* Begin current turn at top of the order */
-	if($_POST["advanceOrder"] == "1"){
+	if($_POST["advanceOrder"] == "start"){
 		$_SESSION["currentTurn"] = getTopOrder();
 	}
 	
 	/* Advances the current turn*/
-	if($_POST["advanceOrder"] == "2"){
+	if($_POST["advanceOrder"] == "next"){
 		if(!isset($_SESSION["currentTurn"])){
 			$_SESSION["currentTurn"] = getTopOrder();
 		}
@@ -86,7 +86,7 @@
 				$prev = $cur;
 			}
 			$cur = $key;
-			if($cur == $_POST["down"]){
+			if($cur == $_POST["moveDown"]){
 				if(isset($prev)){
 					downOrder($_SESSION["order"][$cur], $_SESSION["order"][$prev]);
 				}

@@ -1,7 +1,3 @@
-<?php
-
-?>
-
 <div class="container col-sm-8">
 	<div class="panel panel-default">
 		<div class="panel-heading clearfix">
@@ -11,7 +7,7 @@
 			</header>
 		</div>
 		<div class="panel-body">
-			<div class="container-fluid table">
+			<div class="container-fluid table" id="orderTable">
 				<div class="row">
 						<div class="nameSpan col-sm-4 header">Creature Name</div>
 						<div class="healthSpan col-sm-4 header">Health</div>
@@ -26,20 +22,19 @@
 								$id = $currCreature->id;
 								include("creature_row.php");
 								include("health_modal.php");
+								include("stats_modal.php");
 							}
 						}
 					?>
 			</div>
 		</div>
 		<div class="panel-footer">
-			<form action="initiative/order_process.php" method="POST">
-				<button type="submit" class="btn btn-primary" name="advanceOrder" value="1">
+				<button onclick="nextTurn('start')" class="btn btn-primary" name="advanceOrder">
 					Start Order <span class="glyphicon glyphicon-repeat"></span>
 				</button>
-				<button type="submit" class="btn btn-primary" name="advanceOrder" value="2">
+				<button onclick="nextTurn('next')" class="btn btn-primary" name="advanceOrder">
 					Next Turn <span class="glyphicon glyphicon-chevron-right"></span>
 				</button>
-			</form>
 		</div>
 	</div>
 </div>

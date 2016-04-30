@@ -29,6 +29,7 @@
 		</div>
 	<script src="js/jquery-1.12.1.min.js"></script>
 	<script src="js/bootstrap.min.js"></script>
-	<script src="js/form.js"></script>
+	<script src="js/health_modal.js"></script>
+	<script src="js/turn_order.js"></script>
 	<body>
 </html>

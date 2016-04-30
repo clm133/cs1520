@@ -7,16 +7,16 @@
 			<div class="modal-body">
 				<h5 class="primaryheading">Current Health:<span class="subheading relaventStat" <?php echo "id='currentHealthModal_$id'";?>><?php echo $currHp;?></span></h5>
 					<div class="form-group">
-						<form class="modalForm" id="dmgHealth">
-							<input class="statbox" type="text" name="dmgHealthValue" id="dmgHealthValue">
-							<input type="hidden" id="dmgHiddenHp" <?php echo "name='hiddenHp' value='$currHp'";?>>
-							<input type="hidden" id="dmgHiddenId" <?php echo "name='hiddenId' value='$id'";?>>
+						<form class="modalForm" onsubmit="return applyDamage('<?php echo "dmgHealth_$id";?>','<?php echo "healHealth_$id";?>')" <?php echo "id='dmgHealth_$id'";?>>
+							<input class="statbox" type="text" name="dmgHealthValue">
+							<input type="hidden" name="hiddenId" <?php echo "value='$id'";?>>
+							<input type="hidden" name="hiddenHp" <?php echo "value='$currHp'";?>>
 							<button type="submit" class="btn-primary btn-small">Apply Damage</button>
 						</form>
-						<form class="modalForm" id="healHealth">
-							<input class="statbox" type="text" name="healHealthValue" id="healHealthValue">
-							<input type="hidden" id="healHiddenHp" <?php echo "name='hiddenHp' value='$currHp'";?>>
-							<input type="hidden" id="healHiddenId" <?php echo "name='hiddenId' value='$id'";?>>
+						<form class="modalForm" onsubmit="return applyHeal('<?php echo "dmgHealth_$id";?>','<?php echo "healHealth_$id";?>')" <?php echo "id='healHealth_$id'";?>>
+							<input class="statbox" type="text" name="healHealthValue">
+							<input type="hidden" name="hiddenId" <?php echo "value='$id'";?>>
+							<input type="hidden" name="hiddenHp" <?php echo "value='$currHp'";?>>
 							<button type="submit" class="btn-primary btn-small">Apply Heal</button>
 						</form>
 					</div>

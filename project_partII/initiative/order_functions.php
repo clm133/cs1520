@@ -57,11 +57,21 @@
 	
 /* This function adds creature-specific attributes to each row in the table*/
 	function creatureRowAttributes($p1){
-		if(isset($_SESSION["currentTurn"]) && $p1 == $_SESSION["currentTurn"]){
-			echo "class='row creatureRow currentTurn panel accordian-toggle' data-toggle='collapse' data-target='#creatureOptions_$p1' ";
+		if(getTopOrder() == $p1){ 
+			if(isset($_SESSION["currentTurn"]) && $p1 == $_SESSION["currentTurn"]){
+				echo "class='row creatureRow topOrder currentTurn panel accordian-toggle' data-toggle='collapse' data-target='#creatureOptions_$p1' ";
+			}
+			else{
+				echo "class='row creatureRow topOrder panel accordian-toggle' data-toggle='collapse' data-target='#creatureOptions_$p1' ";
+			}
 		}
 		else{
-			echo "class='row creatureRow panel accordian-toggle' data-toggle='collapse' data-target='#creatureOptions_$p1' ";
+			if(isset($_SESSION["currentTurn"]) && $p1 == $_SESSION["currentTurn"]){
+				echo "class='row creatureRow currentTurn panel accordian-toggle' data-toggle='collapse' data-target='#creatureOptions_$p1' ";
+			}
+			else{
+				echo "class='row creatureRow panel accordian-toggle' data-toggle='collapse' data-target='#creatureOptions_$p1' ";
+			}
 		}
 	}
 	
@@ -93,14 +103,14 @@
 	
 /* This function generates a manageHealth button */
 	function manageHealthButton($p1){
-		echo "<button class='btn btn-primary btn-sm' id='manageHealth' data-toggle='modal' data-target='#healthModal_$p1'>";
+		echo "<button class='btn btn-primary btn-sm' data-toggle='modal' data-target='#healthModal_$p1'>";
 		echo "<span class='btnText'>Manage Health <span class='glyphicon glyphicon-heart'></span></span>";
 		echo "</button>";
 	}
 	
 /* This function generates a viewStats button */
 	function viewStatsButton($p1){
-		echo "<button class='btn btn-primary btn-sm' id='viewStats'>";
+		echo "<button class='btn btn-primary btn-sm' data-toggle='modal' data-target='#statsModal_$p1'>";
 		echo "View Stats <span class='glyphicon glyphicon-book'></span>";
 		echo "</button>";
 	}
